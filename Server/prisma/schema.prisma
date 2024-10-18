@@ -12,6 +12,18 @@ model User {
   email      String   @unique
   firstName  String
   familyName String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+  password   String
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @default(now())
+  posts      Post[]   // One-to-many relationship with posts
+}
+
+model Post {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @default(now())
+  userId      String   // Foreign key for the user
+  user        User     @relation(fields: [userId], references: [id]) // Relationship with User
 }
