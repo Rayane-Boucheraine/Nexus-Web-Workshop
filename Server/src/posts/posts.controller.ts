@@ -14,7 +14,7 @@ import {
 import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard'; 
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('posts')
 export class PostsController {
@@ -32,6 +32,13 @@ export class PostsController {
   @Get()
   async getAllPosts() {
     return this.postsService.getAllPosts();
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('my-posts')
+  async getPostsByUserId(@Request() req) {
+    const userId = req.user.id;
+    return this.postsService.getPostsByUserId(userId);
   }
 
   @UseGuards(JwtAuthGuard)

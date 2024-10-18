@@ -19,6 +19,12 @@ export class PostsService {
     return this.prisma.post.findMany();
   }
 
+  async getPostsByUserId(userId: string) {
+    return this.prisma.post.findMany({
+      where: { userId },
+    });
+  }
+
   async updatePost(id: string, title?: string, description?: string) {
     return this.prisma.post.update({
       where: { id },
