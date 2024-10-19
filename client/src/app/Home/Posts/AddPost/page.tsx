@@ -16,25 +16,36 @@ interface PostResponse {
   message: string;
 }
 
+interface PostError {
+  response?: {
+    data?: {
+      message: string | string[];
+    };
+  };
+}
+
 const AddPostPage: React.FC = () => {
   const [title, setTitle] = useState<string>("");
   const [description, setDescription] = useState<string>("");
 
-  const { mutate: addPost }: UseMutationResult<PostResponse, any, PostData> =
-    useMutation({
-      mutationFn: (data: PostData) => BaseUrl.post("/posts/create", data),
-      onSuccess: (data) => {
-        toast.success(data.message || "Post created successfully!");
-        // window.location.href = `/posts`;
-      },
-      onError: (error: any) => {
-        toast.error(
-          error.response?.data?.message ||
-            error.response?.data?.message[0] ||
-            "An error occurred while creating the post"
-        );
-      },
-    });
+  const {
+    mutate: addPost,
+  }: UseMutationResult<PostResponse, PostError, PostData> = useMutation({
+    mutationFn: (data: PostData) => BaseUrl.post("/posts/create", data),
+    onSuccess: (data) => {
+      toast.success(data.message || "Post created successfully!");
+      // window.location.href = `/posts`;
+    },
+    onError: (error: PostError) => {
+      toast.error(
+        error.response?.data?.message ||
+          (Array.isArray(error.response?.data?.message)
+            ? error.response.data.message[0]
+            : error.response?.data?.message) ||
+          "An error occurred while creating the post"
+      );
+    },
+  });
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
