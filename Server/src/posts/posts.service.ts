@@ -25,6 +25,13 @@ export class PostsService {
     });
   }
 
+  // New Method to get a post by ID
+  async getPostById(id: string) {
+    return this.prisma.post.findUnique({
+      where: { id },
+    });
+  }
+
   async updatePost(id: string, title?: string, description?: string) {
     return this.prisma.post.update({
       where: { id },

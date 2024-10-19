@@ -1,4 +1,8 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from '../prisma/prisma.service';
 import * as bcrypt from 'bcryptjs';
@@ -10,6 +14,7 @@ export class AuthService {
     private prisma: PrismaService,
   ) {}
 
+  // Existing sign-up method
   async signUp(
     email: string,
     password: string,
@@ -29,16 +34,37 @@ export class AuthService {
       const token = this.jwtService.sign({ email, id: user.id });
       return { token };
     } catch (error) {
-      throw new UnauthorizedException('Email is already in use');
+      throw new NotFoundException('Email is already in use');
     }
   }
 
+  // Existing sign-in method
   async signIn(email: string, password: string) {
     const user = await this.prisma.user.findUnique({ where: { email } });
     if (!user || !(await bcrypt.compare(password, user.password))) {
-      throw new UnauthorizedException('Invalid credentials');
+      throw new NotFoundException('Invalid credentials');
     }
     const token = this.jwtService.sign({ email, id: user.id });
     return { token };
+  }
+
+  // New method to get the user profile by userId
+  async getProfile(userId: string) {
+    const user = await this.prisma.user.findUnique({
+      where: { id: userId },
+    });
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    return user;
+  }
+
+  // New method to update the user profile
+  async updateProfile(userId: string, firstName: string, familyName: string) {
+    const updatedUser = await this.prisma.user.update({
+      where: { id: userId },
+      data: { firstName, familyName },
+    });
+    return updatedUser;
   }
 }

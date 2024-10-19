@@ -41,6 +41,12 @@ export class PostsController {
     return this.postsService.getPostsByUserId(userId);
   }
 
+  // New Route for getting a post by ID
+  @Get(':id')
+  async getPostById(@Param('id') id: string) {
+    return this.postsService.getPostById(id);
+  }
+
   @UseGuards(JwtAuthGuard)
   @Patch(':id')
   @UsePipes(new ValidationPipe())
