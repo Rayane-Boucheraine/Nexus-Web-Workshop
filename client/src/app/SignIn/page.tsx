@@ -8,7 +8,7 @@ import BaseUrl from "@/components/BaseUrl";
 import secureLocalStorage from "react-secure-storage";
 import vector from "../../../public/vector.svg";
 import { toast } from "react-toastify";
-import { AxiosError } from "axios"; // Import AxiosError for error typing
+import { AxiosError } from "axios";
 
 interface SignInResponse {
   data: {
@@ -59,7 +59,7 @@ const Page: React.FC = () => {
         alt="vector"
         className="absolute right-0 top-0 w-[100%]"
       />
-      <div className="flex gap-6 flex-col justify-center items-center h-[500px] p-[20px] w-[40%] z-[50] rounded-[24.369px] bg-white/90 backdrop-blur-[calc(var(--sds-size-depth-400)_/_2)]">
+      <div className="flex gap-6 flex-col justify-center items-center h-[500px] p-[20px] w-[40%] z-[50] rounded-[24.369px] bg-white/90 backdrop-blur-[calc(var(--sds-size-depth-400)_/_2)] max-xl:w-[50%] max-lg:w-[62%] max-md:w-[90%]">
         <h2 className="text-[#76E494] font-[800] text-[36px]">Welcome Back!</h2>
         <span className="text-[#000000] mt-[0px] mb-[10px] block">
           Don&apos;t have an account?{" "}
@@ -67,7 +67,7 @@ const Page: React.FC = () => {
             Sign Up
           </Link>
         </span>
-        <form className="flex flex-col gap-4 w-[440px]" onSubmit={handleSubmit}>
+        <form className="flex flex-col gap-4 w-[440px] max-md:w-[90%]" onSubmit={handleSubmit}>
           <input
             type="email"
             placeholder="Email"

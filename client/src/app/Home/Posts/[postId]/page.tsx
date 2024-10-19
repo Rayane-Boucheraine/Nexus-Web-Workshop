@@ -70,9 +70,9 @@ const UpdatePostPage: React.FC = () => {
         alt="vector"
         className="absolute right-0 top-0 w-[100%]"
       />
-      <div className="flex gap-6 flex-col justify-center items-center h-[500px] p-[20px] w-[40%] z-[50] rounded-[24.369px] bg-white/90 backdrop-blur-[calc(var(--sds-size-depth-400)_/_2)]">
+      <div className="flex gap-6 flex-col justify-center items-center h-[500px] p-[20px] w-[40%] z-[50] rounded-[24.369px] bg-white/90 backdrop-blur-[calc(var(--sds-size-depth-400)_/_2)] max-xl:w-[50%] max-lg:w-[62%] max-md:w-[80%]">
         <h2 className="text-[#76E494] font-[800] text-[36px]">Update Post</h2>
-        <form className="flex flex-col gap-4 w-[440px]" onSubmit={handleSubmit}>
+        <form className="flex flex-col gap-4 w-[440px] max-md:w-[90%]" onSubmit={handleSubmit}>
           <input
             type="text"
             placeholder="Title"

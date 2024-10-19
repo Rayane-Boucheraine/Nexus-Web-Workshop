@@ -18,25 +18,25 @@ const Page: React.FC = () => {
         alt="vector"
         className="absolute right-0 top-0 w-[100%]"
       />
-      <div className="flex gap-6 flex-col justify-center items-center h-[500px] p-[20px] w-[40%] z-[50] rounded-[24.369px] bg-white/90 backdrop-blur-[calc(var(--sds-size-depth-400)_/_2)]">
-        <h2 className="text-[#76E494] font-[800] text-[36px] mb-4">
+      <div className="flex gap-6 flex-col justify-center items-center h-[500px] p-[20px] w-[40%] z-[50] rounded-[24.369px] bg-white/90 backdrop-blur-[calc(var(--sds-size-depth-400)_/_2)] max-xl:w-[50%] max-lg:w-[62%] max-md:w-[80%]">
+        <h2 className="text-[#76E494] font-[800] text-[36px] mb-4 max-md:text-[22px]">
           Welcome To Your Profile!
         </h2>
         <div className="flex flex-col gap-6 items-center">
           <Link
             href="/Home/Profile"
-            className="font-[700] text-[20px] bg-[#76E494] text-[#FFFFFF] px-[30px] w-[240px] text-center py-[6px] rounded-[10px]"
+            className="font-[700] text-[20px] bg-[#76E494] text-[#FFFFFF] px-[30px] w-[240px] text-center py-[6px] rounded-[10px] max-md:text-[18px]"
           >
             My Profile
           </Link>
           <Link
             href="/Home/Posts"
-            className="font-[700] text-[20px] bg-[#76E494] text-[#FFFFFF] px-[30px] w-[240px] text-center py-[6px] rounded-[10px]"
+            className="font-[700] text-[20px] bg-[#76E494] text-[#FFFFFF] px-[30px] w-[240px] text-center py-[6px] rounded-[10px] max-md:text-[18px]"
           >
             My Posts
           </Link>
           <button
-            className="font-[700] text-[20px] bg-[red] text-[#FFFFFF] px-[30px] w-[240px] text-center py-[6px] rounded-[10px]"
+            className="font-[700] text-[20px] bg-[red] text-[#FFFFFF] px-[30px] w-[240px] text-center py-[6px] rounded-[10px] max-md:text-[18px]"
             onClick={handleLogout}
           >
             Logout
