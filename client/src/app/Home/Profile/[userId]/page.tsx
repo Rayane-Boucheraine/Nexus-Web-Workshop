@@ -7,7 +7,7 @@ import BaseUrl from "@/components/BaseUrl";
 import Loading from "@/components/Loading";
 import { FormEvent, useState } from "react";
 import { toast } from "react-toastify";
-import { AxiosError } from "axios"; // Import AxiosError for better error typing
+import { AxiosError } from "axios"; 
 
 interface ProfileData {
   firstName: string;
